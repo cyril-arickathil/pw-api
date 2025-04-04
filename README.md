@@ -19,3 +19,5 @@ npm install --save-dev eslint @eslint/js typescript typescript-eslint
 
 playwright to check when to call await and avoid await
 add eslint
+
+note - //storageState works for browser sessions — not for request-only contexts.

@@ -1,12 +1,13 @@
 import { defineConfig, devices } from "@playwright/test";
 
+//const token = JSON.parse(fs.readFileSync(".auth/user.json", "utf-8")).token;
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from "dotenv";
+import path from "path";
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -37,6 +38,33 @@ export default defineConfig({
     {
       name: "API test",
       use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "rest API test",
+      use: { ...devices["Desktop Chrome"] },
+      testDir: "tests/rest",
+    },
+    {
+      name: "auth: contact lists",
+      testDir: "tests/contact-lists",
+      testMatch: /.*\.setup\.ts/,
+    },
+    {
+      name: "contact-lists API test",
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: ".auth/users.json",
+        extraHTTPHeaders: { Authorization: `Bearer ${process.env.API_TOKEN}` },
+      },
+      dependencies: ["auth: contact lists"],
+      testDir: "tests/contact-lists",
+    },
+    { name: "login", testDir: "tests/products", testMatch: /.*\.setup\.ts/ },
+    {
+      name: "behind-login",
+      use: { ...devices["Desktop Chrome"], storageState: ".auth/admin.json" },
+      dependencies: ["login"],
+      testDir: "tests/products",
     },
     // {
     //   name: "chromium",
