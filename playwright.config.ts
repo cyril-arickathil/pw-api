@@ -53,7 +53,7 @@ export default defineConfig({
       name: "contact-lists API test",
       use: {
         ...devices["Desktop Chrome"],
-        storageState: ".auth/users.json",
+        // storageState: ".auth/users.json",
         extraHTTPHeaders: { Authorization: `Bearer ${process.env.API_TOKEN}` },
       },
       dependencies: ["auth: contact lists"],

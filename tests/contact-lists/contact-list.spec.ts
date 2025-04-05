@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+
 import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
@@ -28,5 +29,5 @@ test("GET [3]/contacts/1", async ({ request }) => {
   const body = await response.json();
   console.log(body);
   expect.soft(body.firstName).toBe("James ");
-  expect(body.lastName).toBe('David');
+  expect(body.lastName).toBe("David");
 });
