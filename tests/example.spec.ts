@@ -1,5 +1,23 @@
 import { test, expect } from "@playwright/test";
 
+test('check if button is disabled', async ({ page }) => {
+    await page.click('button:has(i.fa-filter)');
+    await page.locator('.v-select:has(label:text("Supplier")) .mdi-menu-down').click();    
+    await page.locator('.v-list-item:has-text("liqui-moly-restock")').click();  
+    // await page.waitForSelector('table tr');
+    await page.locator('.v-list-item button:has(i.fa-times)').click();  // table close button
+    //await page.waitForTimeout(1000);
+    await expect(page.locator('tr').nth(1)).toBeVisible();
+    await page.locator('tr').nth(1).click();
+    await page.locator('i.fa-ellipsis-h').click();
+    await page.getByText('Avis erstellen').click();
+
+
+
+    // const submitButton = await page.locator('button[type="submit"]');
+    // const isDisabled = await submitButton.isDisabled();
+    // expect(isDisabled).toBe(true);
+});
 test("has title", async ({ page }) => {
   await page.goto("https://playwright.dev/");
 
