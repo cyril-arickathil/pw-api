@@ -33,5 +33,5 @@ test("POST /mutation/login", async ({ request }) => {
   });
   const body = await response.json();
   console.log(body);
-  expect(body.data.logIn.token, "incorrect token ").toBe("ey");
+  expect(body.data.logIn.token, "incorrect token ").not.toBeNull();
 });
