@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.only("POST /avaialable dogs", async ({ request }) => {
+test("POST /avaialable dogs", async ({ request }) => {
   const response = await request.post("https://pet-library.moonhighway.com/", {
     data: {
       query: `
