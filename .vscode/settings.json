@@ -17,7 +17,11 @@
   "files.autoSave": "afterDelay",
   "screencastMode.onlyKeyboardShortcuts": true,
   "terminal.integrated.fontSize": 18,
+<<<<<<< HEAD
   "workbench.colorTheme": "GitHub Dark",
+=======
+  "workbench.colorTheme": "Default Dark+",
+>>>>>>> abe518edb2d1c3bf3301f564c31fb28ad4780848
   "workbench.fontAliasing": "antialiased",
   "workbench.statusBar.visible": true,
   "liveServer.settings.root": "/docs",
