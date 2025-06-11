@@ -1,4 +1,10 @@
 import { test, expect } from "@playwright/test";
+import {
+  AddContactResponseSchema,
+  AddContactRequestSchema,
+} from "./contracts/add-contact.schema";
+
+import { z } from "zod";
 
 import fs from "fs";
 import path from "path";
@@ -27,7 +33,38 @@ test("GET [3]/contacts/1", async ({ request }) => {
     `${URL}/contacts/${process.env.CONTACT_ID}`
   );
   const body = await response.json();
+  await expect(response).toBeOK();
   console.log(body);
   expect.soft(body.firstName).toBe("James ");
   expect(body.lastName).toBe("David");
+});
+
+test("POST [4] Add Contact /contacts", async ({ request }) => {
+  const requestBody = {
+    firstName: 1478,
+    lastName: "Doe",
+    email: "John_Doe@test.com",
+    location: {
+      city: "manchester",
+      country: "uk",
+    },
+    employer: {
+      jobTitle: "",
+      company: "",
+    },
+  };
+  expect
+    .soft(() => {
+      AddContactRequestSchema.parse(requestBody);
+    })
+    .not.toThrow();
+
+  const response = await request.post(`${URL}/contacts`, { data: requestBody });
+  const responseBody = await response.json();
+
+  await expect(response, "201 Created OK").toBeOK();
+  console.log(responseBody);
+  expect(() => {
+    AddContactResponseSchema.parse(responseBody);
+  }).not.toThrow();
 });
