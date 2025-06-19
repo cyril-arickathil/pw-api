@@ -8,7 +8,10 @@
     "test": "playwright test",
     "tsc": "tsc -p tsconfig.json --noEmit -w",
     "ui": "playwright test --ui",
-    "codegen": "playwright codegen"
+    "codegen": "playwright codegen",
+    "allure": "playwright test --reporter=line,allure-playwright",
+    "allure-generate": "allure generate allure-results -o allure-report --clean",
+    "allure-open": "allure open allure-report"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +21,8 @@
     "@eslint/js": "^9.23.0",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.14.0",
+    "allure-commandline": "^2.34.0",
+    "allure-playwright": "^3.2.2",
     "dotenv": "^16.4.7",
     "eslint": "^9.23.0",
     "typescript": "^5.8.2",
