@@ -5,8 +5,8 @@ node_modules/
 /playwright/.cache/
 .github
 .vscode
-allure-report
-allure-results
-playwright-report
+allure-report/
+allure-results/
+playwright-report/
 .env
 .auth
